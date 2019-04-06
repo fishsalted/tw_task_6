@@ -4,30 +4,32 @@ package com.tw;/*
 
 import org.junit.Test;
 
-import java.util.LinkedList;
-
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 public class LibraryTest {
+
     @Test
-    public void testSomeLibraryMethod() {
-        Library classUnderTest = new Library();
-        assertTrue("someLibraryMethod should return 'true'", classUnderTest.someLibraryMethod());
+    public void testStudentGetInputFromString() throws Exception {
+
+        Student student = new Student();
+
+        String string = "王一, 1230012, 英语: 56.2, 数学: 60, 语文: 80, 编程: 99";
+        assertTrue(student.getInputFromString(string));
+
+        string = "王一, 1230012, 英语: 56.2, 数学: 60, 编程: 99";
+        assertFalse(student.getInputFromString(string));
     }
 
     @Test
-    public void testMockClass() throws Exception {
-        // you can mock concrete classes, not only interfaces
-        LinkedList mockedList = mock(LinkedList.class);
+    public void testReportCardGetOutputArgumentsFromString() throws Exception {
 
-        // stubbing appears before the actual execution
-        String value = "first";
-        when(mockedList.get(0)).thenReturn(value);
+        ReportCard report_card = new ReportCard();
 
-        assertEquals(mockedList.get(0), value);
+        String string = "123, 233, 12312312";
+        assertTrue(report_card.getOutputArgumentsFromString(string));
 
+        string = "123, 1230012, , 123211";
+        assertFalse(report_card.getOutputArgumentsFromString(string));
     }
 
 }
